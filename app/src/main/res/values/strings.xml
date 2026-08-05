@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NANDOMX V5</string>
+    <string name="title_activity_settings">Ajustes NANDOMX</string>
+    <string name="vpn_header">VPN Preferences</string>
+    <string name="vpn_description">Configura el trafico del tunel</string>
+    <string name="ssh_header">SSH Preferences</string>
+    <string name="ssh_description">Configura como te conectas al servidor</string>
+    <string name="dns_title">DNS Resolver IP</string>
+    <string name="dns_ip_description">DNS personalizado. Vacio = por defecto.</string>
+    <string name="apps_title">Apps Incluidas</string>
+    <string name="apps_description">Elige que apps usan el tunel</string>
+    <string name="forwarder_port_title">Puerto Forwarder</string>
+    <string name="forwarder_port_description">Puerto manual para SSH forwarder. Auto si vacio:</string>
+</resources>
