@@ -1,6 +1,6 @@
 package ru.anton2319.vpnoverssh;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 import java.io.*;
 import com.nandomx.v5.R;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,25 +10,33 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle b){
-        // ATRAPA TODO EL CRASH Y LO GUARDA EN /sdcard/crash_nandomx.txt
-        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+        Thread.setDefaultUncaughtExceptionHandler((t, ex) -> {
             try {
-                File f = new File("/sdcard/crash_nandomx.txt");
-                PrintWriter pw = new PrintWriter(f);
+                File dir = getExternalFilesDir(null);
+                if(dir==null) dir = getFilesDir();
+                File f = new File(dir, "crash_nandomx.txt");
+                PrintWriter pw = new PrintWriter(new FileWriter(f));
                 pw.println("=== CRASH NANDOMX V5 ===");
-                e.printStackTrace(pw);
+                pw.println(ex.toString());
+                for(StackTraceElement el : ex.getStackTrace()) pw.println(" at " + el);
+                Throwable cause = ex.getCause();
+                if(cause!=null){ pw.println("Caused by: "+cause); for(StackTraceElement el : cause.getStackTrace()) pw.println(" at " + el); }
                 pw.close();
-                Log.e("NANDOMX_CRASH", "Crash guardado", e);
-            } catch (Exception ex) {}
-            // Ahora sí lo dejamos crashear para verlo
+            } catch (Exception e) { e.printStackTrace(); }
             android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(2);
         });
 
         super.onCreate(b);
-        setContentView(R.layout.activity_main);
-        ViewPager2 vp = findViewById(R.id.viewPager);
-        TabLayout tabs = findViewById(R.id.tab_dots);
-        vp.setAdapter(new ViewPagerAdapter(this));
-        new TabLayoutMediator(tabs, vp, (tab,pos)->{}).attach();
+        try{
+            setContentView(R.layout.activity_main);
+            ViewPager2 vp = findViewById(R.id.viewPager);
+            TabLayout tabs = findViewById(R.id.tab_dots);
+            vp.setAdapter(new ViewPagerAdapter(this));
+            new TabLayoutMediator(tabs, vp, (tab,pos)->{}).attach();
+        } catch (Throwable e){
+            Toast.makeText(this, "CRASH: " + e.toString(), Toast.LENGTH_LONG).show();
+            throw e;
+        }
     }
 }
