@@ -1,9 +1,7 @@
 package ru.anton2319.vpnoverssh;
-import com.nandomx.v5.R;
-import android.os.Bundle; import android.view.*;
-import androidx.annotation.*; import androidx.fragment.app.Fragment;
+import android.os.Bundle; import android.view.LayoutInflater; import android.view.View; import android.view.ViewGroup; import androidx.annotation.NonNull; import androidx.annotation.Nullable; import androidx.fragment.app.Fragment;
 public class RegistrosFragment extends Fragment {
- @Nullable @Override public View onCreateView(@NonNull LayoutInflater inf, @Nullable ViewGroup c, @Nullable Bundle b){
-   return inf.inflate(R.layout.fragment_registros, c, false);
+ @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+  return inflater.inflate(R.layout.fragment_registros, container, false);
  }
 }
