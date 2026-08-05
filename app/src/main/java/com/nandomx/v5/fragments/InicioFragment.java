@@ -12,7 +12,6 @@ import ru.anton2319.vpnoverssh.services.SshService;
 import android.content.Intent;
 import java.util.Timer;
 import java.util.TimerTask;
-
 public class InicioFragment extends Fragment {
     TextView tv_bytes; MaterialButton btn; Timer timer;
     @Override public View onCreateView(@NonNull LayoutInflater inf, ViewGroup c, Bundle b){
@@ -25,7 +24,7 @@ public class InicioFragment extends Fragment {
             } else {
                 SSHConnectionProfileManager mgr = new SSHConnectionProfileManager(requireContext());
                 if(mgr.loadProfiles().isEmpty()){
-                    tv_bytes.setText("Crea un perfil primero en pestaña 2");
+                    tv_bytes.setText("Crea perfil en pestana 2");
                     return;
                 }
                 Intent i = new Intent(requireActivity(), SshService.class);
@@ -39,13 +38,7 @@ public class InicioFragment extends Fragment {
                 if(getActivity()==null) return;
                 getActivity().runOnUiThread(() -> {
                     StatusInfo si = StatusInfo.getInstance();
-                    if(si.isConnected()){
-                        btn.setText("DESCONECTAR");
-                        tv_bytes.setText("CONECTADO " + si.getUploadSpeed()/1024 + " KB/s");
-                    } else {
-                        btn.setText("");
-                        tv_bytes.setText("Desconectado - NANDOMX V5");
-                    }
+                    tv_bytes.setText(si.isConnected() ? "CONECTADO" : "Desconectado - NANDOMX V5");
                 });
             }
         },0,1000);
