@@ -1,3 +1,4 @@
+import com.nandomx.v5.R;
 package ru.anton2319.vpnoverssh.data.utils;
 
 import android.content.Context;

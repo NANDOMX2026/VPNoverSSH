@@ -1,3 +1,4 @@
+import com.nandomx.v5.R;
 package ru.anton2319.vpnoverssh;
 import android.os.Bundle; import android.view.*; import android.widget.TextView;
 import androidx.annotation.NonNull; import androidx.fragment.app.Fragment;

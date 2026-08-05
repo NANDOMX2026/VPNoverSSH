@@ -1,3 +1,4 @@
+import com.nandomx.v5.R;
 package ru.anton2319.vpnoverssh;
 import android.os.Bundle; import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2; import com.google.android.material.tabs.TabLayout;
