@@ -17,7 +17,7 @@ import com.trilead.ssh2.DynamicPortForwarder;
 import java.io.IOException;
 import java.util.Optional;
 import ru.anton2319.vpnoverssh.MainActivity;
-import ru.anton2319.vpnoverssh.R;
+import com.nandomx.v5.R;
 import ru.anton2319.vpnoverssh.data.singleton.PortForward;
 
 public class SshService extends Service {

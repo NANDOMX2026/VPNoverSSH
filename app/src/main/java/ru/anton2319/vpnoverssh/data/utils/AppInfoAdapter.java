@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import ru.anton2319.vpnoverssh.R;
+import com.nandomx.v5.R;
 import ru.anton2319.vpnoverssh.data.AppInfo;
 
 public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHolder> {

@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import ru.anton2319.vpnoverssh.MainActivity;
-import ru.anton2319.vpnoverssh.R;
+import com.nandomx.v5.R;
 import ru.anton2319.vpnoverssh.data.singleton.PortForward;
 import ru.anton2319.vpnoverssh.data.singleton.SocksPersistent;
 import ru.anton2319.vpnoverssh.data.singleton.StatusInfo;
