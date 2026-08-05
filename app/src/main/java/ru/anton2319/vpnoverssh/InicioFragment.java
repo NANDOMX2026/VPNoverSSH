@@ -1,4 +1,5 @@
 package ru.anton2319.vpnoverssh;
+import com.nandomx.v5.R;
 import android.os.Bundle; import android.view.*;
 import androidx.annotation.*; import androidx.fragment.app.Fragment;
 public class InicioFragment extends Fragment {
