@@ -1,11 +1,11 @@
 package com.nandomx.v5.fragments;
+import com.nandomx.v5.R;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
-import ru.anton2319.vpnoverssh.R;
 import ru.anton2319.vpnoverssh.data.singleton.StatusInfo;
 import ru.anton2319.vpnoverssh.data.utils.SSHConnectionProfileManager;
 import ru.anton2319.vpnoverssh.services.SshService;
