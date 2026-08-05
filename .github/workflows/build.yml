@@ -1,5 +1,4 @@
-name: Build APK NANDOMX
-on: [push]
+name: Build APK NANDOMXXon: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,9 +12,9 @@ jobs:
       - name: Build with Gradle
         run: |
           chmod +x gradlew
-         ./gradlew assembleDebug
+          ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NANDOMX-VPN-APK
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/*.apj
