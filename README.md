@@ -1,26 +1,36 @@
-# VPN over SSH
+# 🔥 NANDOMX VPN over SSH 🔥
 
-## What is it?
-VPN over SSH is a systemwide proxy for Android which utilizes [VPN Service API](https://developer.android.com/guide/topics/connectivity/vpn). It allows you to tunnel your traffic through SSH tunnel between your server and your client device. Essentially, this is the alternative of doing a dynamic port forward via openssh cli client: `ssh user@hostname -D 1080`. No additional server setup is needed.
+![NANDOMX](https://img.shields.io/badge/NANDOMX-OFICIAL-red?style=for-the-badge)
+![Android](https://img.shields.io/badge/Android-VPN-green?style=for-the-badge)
+![SSH](https://img.shields.io/badge/SSH-Tunnel-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GPLv3-yellow)
 
-## How does it work?
+> **VPN over SSH - Systemwide Proxy para Android creado por NANDOMX OFICIAL**
 
-### Server
-Server (which is typically a Linux or Unix machine) runs OpenSSH, which has the [port forwarding](https://github.com/apache/mina-sshd/blob/master/docs/technical/tcpip-forwarding.md) capability built-in.
+### 🚀 Que es?
+Una VPN que tuneliza TODO tu tráfico de Android a través de un túnel SSH. Sin root, sin configuración rara en el servidor. Solo necesitas un servidor Linux con SSH.
 
-### Client
-The application first establishes a connection with a remote server using [connectbot sshlib](https://github.com/connectbot/sshlib), and sets up a dynamic port forward and a localhost socks5 server on port 1080.
+Alternativa pro a hacer `ssh user@host -D 1080` en PC, pero ahora en tu Android.
 
-Then, using [tun2socks](https://github.com/xjasonlyu/tun2socks) library as socks5 client, it captures all system traffic and sends it to the localhost proxy server. 
+### ⚙️ Como funciona?
+**Servidor:** Cualquier Linux/Unix con OpenSSH (tiene port forwarding integrado)
+**Cliente:** Esta app crea una VPN local y manda todo por el túnel SSH
 
+Sin necesidad de instalar nada extra en el servidor.
 
-## Limitations
+### 📲 Instalación
+1. Descarga el APK de Releases
+2. Instala en tu Android
+3. Pon IP, usuario y puerto SSH de tu VPS
+4. Conectar y listo - 195+117 🔥
 
-### Lack of UDP support
-With no additional server setup, this app cannot tunnel any UDP traffic, which makes it useless for everyday web browsing because services such as YouTube, Twitch, Netflix, and other streaming platforms will not work, as well as many multiplayer games, and other services that rely on UDP to deliver its content.
+### 👑 Créditos
+**Desarrollado y modificado por NANDOMX OFICIAL 23:14**
+- Repo original base, modificado y mejorado por NANDOMX
+- Contacto: GitHub @NANDOMX2026
 
-### Low speed
-OpenSSH uses strong encryption, TCP protocol, and typically runs in userspace, all of which dramaticaly slows down your connection. Expect around 10x slowdown. 
+### ⚠️ Disclaimer
+Uso educativo. Usa tu propio servidor VPS.
 
-
- 
+---
+**NANDOMX OFICIAL - 2026**
