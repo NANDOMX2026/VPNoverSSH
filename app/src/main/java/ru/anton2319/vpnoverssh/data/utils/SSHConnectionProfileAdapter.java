@@ -1,5 +1,5 @@
-import com.nandomx.v5.R;
 package ru.anton2319.vpnoverssh.data.utils;
+import com.nandomx.v5.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

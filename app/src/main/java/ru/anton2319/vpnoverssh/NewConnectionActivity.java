@@ -1,5 +1,5 @@
-import com.nandomx.v5.R;
 package ru.anton2319.vpnoverssh;
+import com.nandomx.v5.R;
 import android.app.Activity; import android.content.Intent; import android.net.Uri; import android.os.Bundle;
 import android.view.View; import android.widget.*; import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton; import com.google.android.material.floatingactionbutton.FloatingActionButton;
