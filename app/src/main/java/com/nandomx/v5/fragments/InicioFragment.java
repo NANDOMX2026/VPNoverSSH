@@ -13,47 +13,67 @@ import ru.anton2319.vpnoverssh.services.SshService;
 import android.content.Intent;
 import java.util.Timer;
 import java.util.TimerTask;
+
 public class InicioFragment extends Fragment {
-    TextView tv_bytes; MaterialButton btn; Timer timer;
-    @Override public View onCreateView(@NonNull LayoutInflater inf, ViewGroup c, Bundle b){
+    TextView tv_bytes; 
+    MaterialButton btn; 
+    Timer timer;
+    
+    @Override 
+    public View onCreateView(@NonNull LayoutInflater inf, ViewGroup c, Bundle b){
         View v = inf.inflate(R.layout.fragment_inicio, c, false);
-        try {
-            tv_bytes = v.findViewById(R.id.tv_bytes);
-            btn = v.findViewById(R.id.btn_conectar_real);
-            if(tv_bytes==null || btn==null) return v;
-            
+        tv_bytes = v.findViewById(R.id.tv_bytes);
+        btn = v.findViewById(R.id.btn_conectar_real);
+        
+        if (btn != null) {
             btn.setOnClickListener(view -> {
                 try {
+                    if (!isAdded() || getContext() == null) return;
                     StatusInfo si = StatusInfo.getInstance();
                     if(si!=null && si.isConnected()){
-                        requireActivity().stopService(new Intent(requireActivity(), SshService.class));
+                        if (getActivity() != null) getActivity().stopService(new Intent(getActivity(), SshService.class));
                     } else {
-                        SSHConnectionProfileManager mgr = new SSHConnectionProfileManager(requireContext());
+                        SSHConnectionProfileManager mgr = new SSHConnectionProfileManager(getContext());
                         if(mgr.loadProfiles().isEmpty()){
                             Toast.makeText(getContext(),"Ve a Registros y crea un perfil primero",Toast.LENGTH_LONG).show();
                             if(tv_bytes!=null) tv_bytes.setText("Crea perfil en Registros");
                             return;
                         }
-                        Intent i = new Intent(requireActivity(), SshService.class);
+                        Intent i = new Intent(getActivity(), SshService.class);
                         i.putExtra("uuid", mgr.loadProfiles().get(0).uuid.toString());
-                        requireActivity().startService(i);
+                        if (getActivity() != null) getActivity().startService(i);
                     }
-                } catch (Exception e){ if(tv_bytes!=null) tv_bytes.setText("Error: "+e.getMessage()); }
-            });
-            timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask(){
-                @Override public void run(){
-                    if(getActivity()==null) return;
-                    getActivity().runOnUiThread(() -> {
-                        try{
-                            StatusInfo si = StatusInfo.getInstance();
-                            if(si!=null && tv_bytes!=null) tv_bytes.setText(si.isConnected() ? "CONECTADO - NANDOMX" : "Desconectado - NANDOMX V5");
-                        }catch(Exception ignored){}
-                    });
+                } catch (Exception e){ 
+                    if(tv_bytes!=null) tv_bytes.setText("Error: "+e.getMessage()); 
                 }
-            },0,1000);
-        } catch(Exception e){ e.printStackTrace(); }
+            });
+        }
+        
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask(){
+            @Override public void run(){
+                if(!isAdded() || getActivity()==null) return;
+                getActivity().runOnUiThread(() -> {
+                    try{
+                        if (!isAdded()) return;
+                        StatusInfo si = StatusInfo.getInstance();
+                        if(si!=null && tv_bytes!=null) {
+                            tv_bytes.setText(si.isConnected() ? "CONECTADO - NANDOMX" : "Desconectado - NANDOMX V5");
+                        }
+                    }catch(Exception ignored){}
+                });
+            }
+        },0,1000);
+        
         return v;
     }
-    @Override public void onDestroyView(){ super.onDestroyView(); if(timer!=null) timer.cancel(); }
+    
+    @Override 
+    public void onDestroyView(){ 
+        super.onDestroyView(); 
+        if(timer!=null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
 }
